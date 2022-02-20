@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useCallback} from 'react';
+import classes from './App.module.scss';
+import {SearchBox} from "./searchBox/searchBox";
+import {useRoninApi} from "./apis/useRoninApi";
+import {isValidRoninAddress} from "./roninAddress/roninAddress";
+import {Container, Grid} from "@mui/material";
+import {useDispatch} from "react-redux";
 
-function App() {
+export const App = () => {
+    const ronin = useRoninApi()
+    const dispatch = useDispatch()
+    const onAddressSubmit = useCallback((hash: string) => {
+        if (isValidRoninAddress(hash)) {
+            return Promise.all(
+                [
+                    // API does not allow getting more of 200 transactions
+                    ronin.getTransfers(hash.replace("ronin:", "0x"), 100, 0),
+                    ronin.getAccountInfo(encodeURIComponent(hash))
+                ]
+            )
+        }
+    }, [ronin])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth={'sm'}>
+      <div className={classes.AppHeader}>
+        <SearchBox onSubmit={onAddressSubmit}/>
+      </div>
+        <Grid container spacing={2}>
+
+        </Grid>
+    </Container>
   );
 }
 

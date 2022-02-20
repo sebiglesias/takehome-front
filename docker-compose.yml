@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
 
-  takehome-front:
-    container_name: takehome-front
+  takehome-front-dev:
+    container_name: takehome-front-dev
     build:
       context: .
       dockerfile: Dockerfile
