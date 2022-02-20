@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/takehome-front/static/css/main.073c9b0a.css",
+    "main.js": "/takehome-front/static/js/main.9404e597.js",
+    "static/js/787.482d52ff.chunk.js": "/takehome-front/static/js/787.482d52ff.chunk.js",
+    "static/media/logo.svg": "/takehome-front/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/takehome-front/index.html",
+    "main.073c9b0a.css.map": "/takehome-front/static/css/main.073c9b0a.css.map",
+    "main.9404e597.js.map": "/takehome-front/static/js/main.9404e597.js.map",
+    "787.482d52ff.chunk.js.map": "/takehome-front/static/js/787.482d52ff.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.9404e597.js"
+  ]
+}
