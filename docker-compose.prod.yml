@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+
+  takehome-front-prod:
+    container_name: takehome-front-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - '1337:80'

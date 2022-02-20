@@ -14,7 +14,32 @@ Deliverable:
 
 Evaluation Criteria:
 
-We should be able to execute your solution without much hassle, and the app should be intuitive to use. We will evaluate your code based on clarity, performance, and maintainability. Make sure to include relevant tests and documentation. 
+We should be able to execute your solution without much hassle, and the app should be intuitive to use. We will evaluate your code based on clarity, performance, and maintainability. Make sure to include relevant tests and documentation.
 
-Let us know if you have any questions. Happy coding! 
+Let us know if you have any questions. Happy coding!
 
+Using `node version 16`. Look into [NVM](https://github.com/nvm-sh/nvm) for node version management. 
+
+## Build
+
+```bash
+npm run build
+```
+
+## Run App
+
+```bash
+# Dev environment
+./start.dev.sh
+
+# "Prod" environment
+./start.prod.sh
+```
+
+[Development url](http://localhost:3001)
+[Prod url](http://localhost:1337)
+
+```bash
+# Stops either dev or prod app
+./stop.sh
+```
