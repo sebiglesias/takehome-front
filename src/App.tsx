@@ -25,7 +25,7 @@ export const App = () => {
         const hasSlpTransaction = !!transactions && transactions.slp !== 0
         const hasSlpHoldings = !!balance && parseInt(balance.slp) !== 0
         dispatch(setAccountType(hasSlpTransaction ? AccountType.scholar : hasSlpHoldings ? AccountType.scholar : AccountType.investor))
-    }, [walletHash, balance, transactions])
+    }, [walletHash, balance, transactions, dispatch])
 
     const onAddressSubmit = useCallback((hash: string) => {
         dispatch(setLoading(true))
@@ -71,7 +71,7 @@ export const App = () => {
                 {showInfo &&
                     <>
                         <Grid item xs={12} md={12}>
-                            <AddressTypeCard accountType={accountType}/>
+                            <AddressTypeCard accountType={accountType} walletHash={walletHash}/>
                         </Grid>
                         <Grid item xs={12} md={12}>
                             <h2>Holdings</h2>
