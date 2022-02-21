@@ -15,10 +15,14 @@ import Axs from './images/axs.svg'
 import Axie from './images/axie.png'
 import {setAccountType, setBalances, setLoading, setTransactionTypes} from "./address/addressSlice";
 import {extractBalance, extractTxs} from "./roninExplorer/utils";
+import {useAxiesApi} from "./apis/useAxiesApi";
+import {setExchangeRates} from "./exchangeRates/exchangeRatesSlice";
 
 export const App = () => {
     const {accountType, walletHash, balance, loading, transactions} = useSelector((state: AppState) => state.address)
+    const rates = useSelector((state: AppState) => state.exchangeRate)
     const ronin = useRoninApi()
+    const axies = useAxiesApi()
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -33,6 +37,9 @@ export const App = () => {
             const parsedAddress = hash.replace('ronin:', '0x')
             return Promise.all(
                 [
+                    axies.getExchangeRate().then(res => {
+                        dispatch(setExchangeRates(res))
+                    }),
                     ronin.getTransactions(parsedAddress, 100, 0).then(res => {
                         const txs: {contractAddress: string, callData: string}[] = res.results.map(result => {
                             return {contractAddress: result.to, callData: result.input, logs: []}
@@ -51,10 +58,11 @@ export const App = () => {
                 ]
             ).finally(() => dispatch(setLoading(false)))
         }
-    }, [ronin, dispatch])
+    }, [ronin, dispatch, axies])
 
     const showInfo = walletHash !== undefined && walletHash !== '' && !loading
 
+    console.log('eth:' + rates.eth.usd)
     return (
     <Container maxWidth={'md'} className={classes.container}>
             <Grid container spacing={2}>
@@ -73,21 +81,32 @@ export const App = () => {
                         <Grid item xs={12} md={12}>
                             <AddressTypeCard accountType={accountType} walletHash={walletHash}/>
                         </Grid>
-                        <Grid item xs={12} md={12}>
-                            <h2>Holdings</h2>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={(!!balance && balance.weth) || '0'} key={0} imgUrl={Eth} title={'WETH'}/>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={(!!balance && balance.axs) || '0'} key={1} imgUrl={Axs} title={'AXS'}/>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={(!!balance && balance.slp) || '0'} key={2} imgUrl={Slp} title={'SLP'}/>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={(!!balance && balance.axie) || '0'} key={3} imgUrl={Axie} title={'AXIE'}/>
-                        </Grid>
+                        { balance !== undefined && <>
+                            <Grid item xs={12} md={12}>
+                                <h2>Holdings</h2>
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <InfoCard
+                                    value={balance.weth || '0.00'}
+                                    key={0}
+                                    imgUrl={Eth}
+                                    title={'WETH'}
+                                    subValue={(parseFloat(balance.weth) * rates.eth.usd).toFixed(2) || '0'}
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <InfoCard value={balance.axs || '0.00'} key={1} imgUrl={Axs} title={'AXS'}
+                                          subValue={(parseFloat(balance.axs) * rates.axs.usd).toFixed(2) || '0'}/>
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <InfoCard value={balance.slp || '0.00'} key={2} imgUrl={Slp} title={'SLP'}
+                                          subValue={(parseFloat(balance.slp) * rates.slp.usd).toFixed(2) || '0'}
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={4}>
+                                <InfoCard value={balance.axie || '0'} key={3} imgUrl={Axie} title={'AXIE'}/>
+                            </Grid>
+                            </>}
                         <Grid item xs={12} md={12}>
                             <h2>Transactions</h2>
                             <h3>Percentages taken over last 100 transactions</h3>

@@ -5,16 +5,20 @@ export type CardProps = {
     imgUrl: string
     title: string
     value: string
+    subValue?: string
 }
 
 export const InfoCard = (props: CardProps) => {
-    const {imgUrl, title, value} = props
+    const {imgUrl, title, value, subValue} = props
     return (
         <Card className={classes.container}>
             <CardContent>
                 <div className={classes.header}>
                     <img src={imgUrl} alt={'card symbol'} className={classes.img}/>
-                    <p className={classes.value}>{`${value} ${title}`}</p>
+                    <div className={classes.values}>
+                        <p className={classes.value}>{`${value} ${title}`}</p>
+                        {!!subValue && <p>{subValue} USD</p>}
+                    </div>
                 </div>
             </CardContent>
         </Card>
