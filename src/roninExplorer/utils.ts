@@ -1,5 +1,5 @@
 import {BalanceDTO} from "../models/transactions";
-import {Transaction, TransactionERC20, Balance} from "../address/types";
+import {Balance, TxsPercentages} from "../address/types";
 
 export const extractBalance = (dto: BalanceDTO): Balance => {
     const balance: Balance = {
@@ -20,7 +20,7 @@ export const extractBalance = (dto: BalanceDTO): Balance => {
                 balance.axs = getRealBalance(result.balance, result.token_decimals)
                 break
             case "AXIE":
-                balance.axie = getRealBalance(result.balance, '0')
+                balance.axie = getRealBalance(result.balance)
                 break
             default:
                 break
@@ -29,17 +29,38 @@ export const extractBalance = (dto: BalanceDTO): Balance => {
     return balance
 }
 
-// ts-ignore
-export const extractTransactions = (dto): Transaction[] => {
-    // ts-ignore
-    return {}
-}
-// ts-ignore
-export const extractTransactionsERC20 = (dto): TransactionERC20[] => {
-    // ts-ignore
-    return {}
+export const extractTxs = (data: string[]): TxsPercentages => {
+    const total = data.length
+    const txsCount = {
+        weth: 0,
+        axie: 0,
+        slp: 0,
+        axs: 0,
+        ron: 0
+    }
+    data.forEach(action => {
+        const lowerCasesActionType = action.toLowerCase()
+        if (lowerCasesActionType.includes('weth')) {
+            txsCount.weth++
+        } else if (lowerCasesActionType.includes('axie') || lowerCasesActionType.includes('nft')) {
+            txsCount.axie++
+        } else if (lowerCasesActionType.includes('slp')) {
+            txsCount.slp++
+        } else if (lowerCasesActionType.includes('axs')) {
+            txsCount.axs++
+        } else if (lowerCasesActionType.includes('ron')) {
+            txsCount.ron++
+        }
+    })
+    return total > 0 ? {
+        weth: (txsCount.weth / total) * 100,
+        axie: (txsCount.axie / total) * 100,
+        slp: (txsCount.slp / total) * 100,
+        axs: (txsCount.axs / total) * 100,
+        ron: (txsCount.ron / total) * 100,
+    } : txsCount
 }
 
-export const getRealBalance = (balance: string, decimals: string) => {
-    return '' + parseFloat((parseInt(balance) * Math.pow(10, -parseInt(decimals))).toFixed(8))
+export const getRealBalance = (balance: string, decimals: number = 0) => {
+    return '' + parseFloat((parseInt(balance) * Math.pow(10, -decimals)).toFixed(8))
 }
