@@ -3,6 +3,10 @@
   height: 50px;
 }
 
+.container {
+  background-color: #f5f8fc;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -11,4 +15,5 @@
 
 .value {
   text-align: center;
+  font-weight: 600;
 }

@@ -42,3 +42,18 @@ slpManageContractAddress =
 binanceOfficialAddress =
     "0xb32e9a84ae0b55b8ab715e4ac793a61b277bafa3",
 }
+
+export type Balance = {
+    weth: string,
+    axie: string,
+    slp: string,
+    axs: string
+}
+
+export type Transaction = {
+
+}
+
+export type TransactionERC20 = {
+
+}

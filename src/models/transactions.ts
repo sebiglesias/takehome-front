@@ -15,29 +15,14 @@ export type TransferDTO = {
     total: number
 }
 
-export type AccountDTO = {
-    pageProps: {
-        accountInfo: {
-            address: string
-            balance: string
-            blockNumber: number
-            erc20Networth: number
-            totalNfts: 60
-            transactionCount: string
-        }
-        balance: {
-            results: {
-                balance: string,
-                tokenAddress: string,
-                tokenDecimals: number,
-                tokenName: string,
-                tokenSymbol: string,
-                tokenType: string
-            },
-            total: number
-        }
-        page: number,
-        pageSize: number,
-        tokenInfo?: number
-    }
+export type BalanceDTO = {
+    results: {
+        balance: string,
+        token_address: string,
+        token_decimals: string,
+        token_name: string,
+        token_symbol: string,
+        token_type: string
+    }[],
+    total: number
 }

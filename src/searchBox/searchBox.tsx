@@ -7,6 +7,7 @@ import classes from './searchBox.module.scss'
 
 export type SearchBoxProps = {
     onSubmit: (hash: string) => void
+    disabled: boolean
 }
 
 export const SearchBox = (props: SearchBoxProps) => {
@@ -30,6 +31,7 @@ export const SearchBox = (props: SearchBoxProps) => {
 
     return (
       <TextField
+          disabled={props.disabled}
           className={classes.textField}
           error={hasError}
           id={'searchBox'}
