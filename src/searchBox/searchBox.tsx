@@ -51,7 +51,7 @@ export const SearchBox = ({onSubmit, disabled}: SearchBoxProps) => {
                   color={!hasError && hash.length > 0 ? 'success' : 'info'}
                   placeholder={'ronin:6d71...589a'}
               />
-            <Button onClick={submit} variant={'contained'} className={classes.button} disabled={!isValid}>Search</Button>
+            <Button onClick={submit} variant={'contained'} className={classes.button} disabled={disabled}>Search</Button>
         </>
     )
 }
