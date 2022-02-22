@@ -1,4 +1,4 @@
-import classes from './addressTypeCard.module.scss'
+import classes from './addressTypeCard.module.css'
 import ScholarHat from '../images/scholarHat.svg'
 import Money from '../images/money.svg'
 import {Button, IconButton, Link, Tooltip, Typography} from '@mui/material'

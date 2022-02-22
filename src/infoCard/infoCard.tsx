@@ -1,5 +1,5 @@
 import {Card, CardContent} from "@mui/material";
-import classes from './infoCard.module.scss'
+import classes from './infoCard.module.css'
 
 export type CardProps = {
     imgUrl: string

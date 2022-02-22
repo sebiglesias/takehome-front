@@ -1,20 +1,25 @@
-# pull official base image
-FROM node:16-alpine3.14
+# build environment
+FROM node:16-alpine3.14 as builder
 
-# set working directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json .
+COPY package-lock.json .
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@5.0.0 -g --silent
+RUN npm install
 
-# add app
-COPY . ./
+COPY . .
 
-# start app
-CMD ["npm", "start"]
+RUN npm run build
+
+# production environment
+FROM nginx as production
+WORKDIR /usr/share/nginx/html
+# Copy built assets from builder
+COPY --from=builder /app/build .
+# Add your nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Expose port
+EXPOSE 80
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

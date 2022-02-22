@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField"
 import {useDispatch} from "react-redux"
 import {isValidRoninAddress} from "../roninAddress/roninAddress";
 import {setWalletHash} from "../address/addressSlice";
-import classes from './searchBox.module.scss'
+import classes from './searchBox.module.css'
 import {Button} from "@mui/material";
 
 export type SearchBoxProps = {

@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
-import classes from './App.module.scss';
+import classes from './App.module.css';
 import {SearchBox} from "./searchBox/searchBox";
 import {useRoninApi} from "./apis/useRoninApi";
 import {isValidRoninAddress} from "./roninAddress/roninAddress";
@@ -12,7 +12,7 @@ import Eth from './images/eth.svg'
 import Slp from './images/slp.svg'
 import Axs from './images/axs.svg'
 import Axie from './images/axie.png'
-import {setAccountType, setBalances, setLoading, setTransactionTypes} from "./address/addressSlice";
+import {setAccountType, setBalances, setLoading, setTransactionTypes, setWalletHash} from "./address/addressSlice";
 import {extractBalance, extractTxs} from "./roninExplorer/utils";
 import {useAxiesApi} from "./apis/useAxiesApi";
 import {setExchangeRates} from "./exchangeRates/exchangeRatesSlice";
@@ -33,6 +33,7 @@ export const App = () => {
     const onAddressSubmit = useCallback((hash: string) => {
         dispatch(setLoading(true))
         if (isValidRoninAddress(hash)) {
+            dispatch(setWalletHash(hash))
             const parsedAddress = hash.replace('ronin:', '0x')
             return Promise.all(
                 [
