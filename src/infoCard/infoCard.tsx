@@ -8,16 +8,15 @@ export type CardProps = {
     subValue?: string
 }
 
-export const InfoCard = (props: CardProps) => {
-    const {imgUrl, title, value, subValue} = props
+export const InfoCard = ({imgUrl, title, value, subValue}: CardProps) => {
     return (
-        <Card className={classes.container}>
+        <Card className={classes.container} variant={'outlined'}>
             <CardContent>
                 <div className={classes.header}>
-                    <img src={imgUrl} alt={'card symbol'} className={classes.img}/>
+                    <img data-testid={'card-image'} src={imgUrl} alt={'card symbol'} className={classes.img}/>
                     <div className={classes.values}>
-                        <p className={classes.value}>{`${value} ${title}`}</p>
-                        {!!subValue && <p>{subValue} USD</p>}
+                        <p className={classes.value} data-testid={'title-text'}>{`${value} ${title}`}</p>
+                        {!!subValue && <span data-testid={'sub-value-text'}>{subValue} USD</span>}
                     </div>
                 </div>
             </CardContent>

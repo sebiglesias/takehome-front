@@ -1,7 +1,7 @@
 import classes from './addressTypeCard.module.scss'
 import ScholarHat from '../images/scholarHat.svg'
 import Money from '../images/money.svg'
-import {IconButton, Link, Tooltip, Typography} from '@mui/material'
+import {Button, IconButton, Link, Tooltip, Typography} from '@mui/material'
 import QuestionMark from '@mui/icons-material/QuestionMark';
 
 export enum AccountType {
@@ -25,6 +25,7 @@ export const AddressTypeCard = (props: HeaderCardProps) => {
                 <img className={classes.img} src={isInvestor ? Money : ScholarHat} alt={'Account address type'} />
                 <h1>{!!accountType && accountType}</h1>
                 <Tooltip
+                    placement={'right'}
                     title={
                         <Typography>
                             {isInvestor ?
@@ -43,7 +44,9 @@ export const AddressTypeCard = (props: HeaderCardProps) => {
                     </IconButton>
                 </Tooltip>
             </div>
-            <Link href={`https://explorer.roninchain.com/address/${walletHash}`}>View Ronin Explorer wallet</Link>
+            <Button variant={'outlined'}>
+                <Link underline={'none'} target={'_blank'} href={`https://explorer.roninchain.com/address/${walletHash}`}>View Ronin Explorer wallet</Link>
+            </Button>
         </div>
     )
 }

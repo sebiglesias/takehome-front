@@ -1,3 +1,9 @@
 .textField {
-  flex: 1
+  flex: 1;
+  // I would prefer not to use an important, but navigating the material ui to see a specific selector would take more time
+  margin-right: 20px !important;
+}
+
+.button {
+  margin-left: 20px;
 }

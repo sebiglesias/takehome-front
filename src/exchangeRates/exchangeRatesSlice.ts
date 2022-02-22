@@ -29,7 +29,6 @@ const slice = createSlice({
     name: 'exchangeRate',
     reducers: {
         setExchangeRates(state, {payload}: PayloadAction<ExchangeRates>) {
-            console.log(payload)
             state.axs.usd = payload.axs.usd
             state.eth.usd = payload.eth.usd
             state.slp.usd = payload.slp.usd

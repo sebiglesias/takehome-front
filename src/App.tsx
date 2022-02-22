@@ -8,7 +8,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {InfoCard} from "./infoCard/infoCard";
 import {AccountType, AddressTypeCard} from "./addressTypeCard/addressTypeCard";
 import {AppState} from "./store";
-
 import Eth from './images/eth.svg'
 import Slp from './images/slp.svg'
 import Axs from './images/axs.svg'
@@ -62,9 +61,8 @@ export const App = () => {
 
     const showInfo = walletHash !== undefined && walletHash !== '' && !loading
 
-    console.log('eth:' + rates.eth.usd)
     return (
-    <Container maxWidth={'md'} className={classes.container}>
+        <Container maxWidth={'md'} className={classes.container}>
             <Grid container spacing={2}>
                 {!showInfo && <Grid item xs={12} md={12}>
                     <Typography sx={{p: 2}}>Press enter to search the info of a specific ronin address</Typography>
@@ -83,7 +81,7 @@ export const App = () => {
                         </Grid>
                         { balance !== undefined && <>
                             <Grid item xs={12} md={12}>
-                                <h2>Holdings</h2>
+                                <Typography variant={'h5'}>Holdings</Typography>
                             </Grid>
                             <Grid item xs={12} md={4}>
                                 <InfoCard
@@ -107,27 +105,29 @@ export const App = () => {
                                 <InfoCard value={balance.axie || '0'} key={3} imgUrl={Axie} title={'AXIE'}/>
                             </Grid>
                             </>}
-                        <Grid item xs={12} md={12}>
-                            <h2>Transactions</h2>
-                            <h3>Percentages taken over last 100 transactions</h3>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={`${(!!transactions && transactions.weth.toFixed(2)) || '0'}%`} key={4} imgUrl={Eth} title={'WETH related transactions'}/>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={`${(!!transactions && transactions.axs.toFixed(2)) || '0'}%`} key={5} imgUrl={Axs} title={'AXS related transactions'}/>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={`${(!!transactions && transactions.slp.toFixed(2)) || '0'}%`} key={6} imgUrl={Slp} title={'SLP related transactions'}/>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <InfoCard value={`${(!!transactions && transactions.axie.toFixed(2)) || '0'}%`} key={7} imgUrl={Axie} title={'AXIE related transactions'}/>
-                        </Grid>
+                        {transactions !== undefined &&
+                            <>
+                                <Grid item xs={12} md={12}>
+                                    <Typography variant={'h5'}>Transactions</Typography>
+                                    <Typography variant={'subtitle1'}>Percentages taken over last 100 transactions</Typography>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                <InfoCard value={`${(!!transactions && transactions.weth.toFixed(2)) || '0'}%`} key={4} imgUrl={Eth} title={'WETH related transactions'}/>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                <InfoCard value={`${(!!transactions && transactions.axs.toFixed(2)) || '0'}%`} key={5} imgUrl={Axs} title={'AXS related transactions'}/>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                <InfoCard value={`${(!!transactions && transactions.slp.toFixed(2)) || '0'}%`} key={6} imgUrl={Slp} title={'SLP related transactions'}/>
+                                </Grid>
+                                <Grid item xs={12} md={4}>
+                                <InfoCard value={`${(!!transactions && transactions.axie.toFixed(2)) || '0'}%`} key={7} imgUrl={Axie} title={'AXIE related transactions'}/>
+                                </Grid>
+                            </>
+                        }
                     </>
                 }
             </Grid>
-    </Container>
-  );
+        </Container>
+  )
 }
-
-export default App;

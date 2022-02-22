@@ -42,12 +42,9 @@ const slice = createSlice({
         setAccountType(state, {payload}: PayloadAction<AccountType>) {
             state.accountType = payload
         },
-        clearWalletHash(state) {
-            state = initialState
-        },
     }
 })
 
-export const {setWalletHash, clearWalletHash, setLoading, setBalances, setTransactionTypes, setTransactionsERC20, setAccountType} = slice.actions
+export const {setWalletHash, setLoading, setBalances, setTransactionTypes, setTransactionsERC20, setAccountType} = slice.actions
 
 export default slice.reducer
