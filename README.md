@@ -22,6 +22,10 @@ Let us know if you have any questions. Happy coding!
 
 </details>
 
+
+Uploading Screen Recording 2022-02-22 at 02.10.14.mov…
+
+
 ## Requirements
 
 There is a docker-compose setup to run the app locally without needing to install anything outside the container (Except for docker & docker compose, [Installation Guide](https://docs.docker.com/compose/install/)).
@@ -44,7 +48,9 @@ npm run build
 # OR
 npm run start
 ```
-[URL](http://localhost:3000)
+[URL for npm run start](http://localhost:3000)
+[URL for docker](http://localhost:80)
+
 ## Considerations
 
 The project is a `create-react-app`, I'm using typescript and plain css. For components I'm using the [Material UI](https://mui.com/) library.
@@ -52,9 +58,10 @@ The project is a `create-react-app`, I'm using typescript and plain css. For com
 In order to determine a scholar from an investor I'm using the following criteria:
 
 - A scholar will have SLP transactions or holdings where a breeder or investor will probably not.
-- A breeder/investor will have a high number of transactions that don't include SLP and different holdings as well
+- A breeder/investor will have a high number of transactions that don't include SLP and different holdings as well.
 
 ### Things to improve on
 
 - I'm not using some transaction endpoints that where available in the website, mainly because I couldn't pass info to the decoder. I experimented a bit trying to determine the type of transaction from the `to` and `from` address but deemed it not worth pursuing, as it would have taken me more time.
-- Have some sort of integration tests to test the app as a whole, only unit tests where added
+- Have some sort of integration tests to test the app as a whole, only unit tests where added.
+- Look into the Axies infinity graphql api for additional information to base decision on.
