@@ -65,7 +65,7 @@ export const App = () => {
         <Container maxWidth={'md'} className={classes.container}>
             <Grid container spacing={2}>
                 {!showInfo && <Grid item xs={12} md={12}>
-                    <Typography sx={{p: 2}}>Press enter to search the info of a specific ronin address</Typography>
+                    <Typography sx={{p: 2}}>Search for a ronin address, they have the following format: ronin:2b9fd5ebc7a6ce8539e2aec96774544b8d559732</Typography>
                 </Grid>
                 }
                 <Grid item xs={12} md={12} className={classes.box}>
