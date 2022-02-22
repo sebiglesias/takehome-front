@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/takehome-front/static/css/main.35a5d09c.css",
-    "main.js": "/takehome-front/static/js/main.4d076b37.js",
+    "main.css": "/takehome-front/static/css/main.61459a01.css",
+    "main.js": "/takehome-front/static/js/main.14411519.js",
     "static/js/787.482d52ff.chunk.js": "/takehome-front/static/js/787.482d52ff.chunk.js",
     "static/media/axie.png": "/takehome-front/static/media/axie.82f27c5a2544c088e6a2.png",
     "static/media/money.svg": "/takehome-front/static/media/money.71d0d6195ed328b13cc21fa5ae730496.svg",
@@ -10,12 +10,12 @@
     "index.html": "/takehome-front/index.html",
     "static/media/eth.svg": "/takehome-front/static/media/eth.16a6ff8a6fc524d788c62a51692ce6fd.svg",
     "static/media/scholarHat.svg": "/takehome-front/static/media/scholarHat.cf5a7d2cfdc0a0d3745feaf7f087b076.svg",
-    "main.35a5d09c.css.map": "/takehome-front/static/css/main.35a5d09c.css.map",
-    "main.4d076b37.js.map": "/takehome-front/static/js/main.4d076b37.js.map",
+    "main.61459a01.css.map": "/takehome-front/static/css/main.61459a01.css.map",
+    "main.14411519.js.map": "/takehome-front/static/js/main.14411519.js.map",
     "787.482d52ff.chunk.js.map": "/takehome-front/static/js/787.482d52ff.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.35a5d09c.css",
-    "static/js/main.4d076b37.js"
+    "static/css/main.61459a01.css",
+    "static/js/main.14411519.js"
   ]
 }
